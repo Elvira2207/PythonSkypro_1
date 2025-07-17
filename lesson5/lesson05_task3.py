@@ -5,19 +5,20 @@ from selenium.webdriver.common.keys import Keys
 
 driver = webdriver.Firefox()
 
-driver.get("http://the-internet.herokuapp.com/login")
+driver.get("http://the-internet.herokuapp.com/inputs")
 
-username_input = driver.find_element(By.XPATH, '//input[@id="username"]')
-username_input.send_keys("tomsmith")
-
-sleep(3)
-
-password_input = driver.find_element(By.XPATH, '//input[@id="password"]')
-password_input.send_keys("SuperSecretPassword")
+number_input = driver.find_element(By.XPATH, '//input[@type="number"]')
+number_input.send_keys("Sky", Keys.RETURN)
 
 sleep(3)
 
-button = driver.find_element(By.CSS_SELECTOR, "buton.radius")
-button.click()
+number_input.clear()
 
 sleep(3)
+
+number_input = driver.find_element(By.XPATH, '//input[@type="number"]')
+number_input.send_keys("Pro", Keys.RETURN)
+
+sleep(3)
+
+driver.quit()
