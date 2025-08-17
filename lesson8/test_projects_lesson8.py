@@ -24,6 +24,7 @@ def test_create_project_positive():
     resp_data = resp.json()
     project_id = resp_data["id"]
     assert project_id
+    return project_id
 
 def test_create_project_negative():
     payload = {
@@ -39,7 +40,7 @@ def test_create_project_negative():
     resp = requests.post(BASE_URL, json=payload, headers=headers)
     assert resp.status_code ==400
 
-def test_editing_project_positive():
+def test_editing_project_positive(create_project):
     project_id = create_project()
     payload = {
         "deleted": False,
@@ -72,7 +73,7 @@ def test_editing_project_negative():
     resp = requests.put(f"{BASE_URL}/{id_negative}", json=payload, headers=headers)
     assert resp.status_code == 404
 
-def test_id_project_positive():
+def test_id_project_positive(create_project):
     project_id = create_project()
 
     headers ={
